@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/4_Bark_01.wav-2cc355a5afe47620725d051f43c19eaf.sample"
+
+[deps]
+
+source_file="res://Assets/Foe_sounds/4_Bark_01.wav"
+dest_files=[ "res://.import/4_Bark_01.wav-2cc355a5afe47620725d051f43c19eaf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

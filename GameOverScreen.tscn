@@ -1,0 +1,102 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/PressStart2P.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/Avatar.png" type="Texture" id=2]
+[ext_resource path="res://GameOverScreen.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "spin"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 180.0, 360.0 ]
+}
+
+[node name="GameOverScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.156863, 0.156863, 0.156863, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer"]
+margin_left = 296.0
+margin_top = 152.0
+margin_right = 728.0
+margin_bottom = 448.0
+
+[node name="Label" type="Label" parent="ColorRect/CenterContainer/VBoxContainer"]
+margin_right = 432.0
+margin_bottom = 67.0
+custom_fonts/font = SubResource( 1 )
+text = "GAME OVER
+"
+align = 1
+valign = 1
+
+[node name="ScoreLabel" type="Label" parent="ColorRect/CenterContainer/VBoxContainer"]
+margin_top = 71.0
+margin_right = 432.0
+margin_bottom = 296.0
+custom_fonts/font = SubResource( 2 )
+text = "Joined Together: nnn times
+
+Put Asunder: nnn times
+
+
+
+
+
+
+Final Score: nnn
+
+Press [enter] to play again"
+align = 1
+valign = 1
+
+[node name="Bride" type="Sprite" parent="."]
+position = Vector2( 500.902, 333.637 )
+rotation = 3.14159
+scale = Vector2( 4, 4 )
+texture = ExtResource( 2 )
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bride"]
+anims/spin = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="Bride"]
+wait_time = 0.1
+one_shot = true
+autostart = true
+[connection signal="timeout" from="Bride/Timer" to="Bride/AnimationPlayer" method="play" binds= [ "spin" ]]
